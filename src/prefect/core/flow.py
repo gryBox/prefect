@@ -167,7 +167,8 @@ class Flow:
         self.storage = storage
         if result_handler:
             warnings.warn(
-                "Result Handlers are deprecated; please use the new style Result classes instead.",
+                "Result Handlers are deprecated; please use the new style Result"
+                " classes instead.",
                 stacklevel=2,
             )
             self.result = ResultHandlerResult.from_result_handler(
@@ -513,8 +514,9 @@ class Flow:
         elif task not in self.tasks:
             if task.slug and task.slug in self.slugs.values():
                 raise ValueError(
-                    'A task with the slug "{}" already exists in this '
-                    "flow.".format(task.slug)
+                    'A task with the slug "{}" already exists in this flow.'.format(
+                        task.slug
+                    )
                 )
             self.slugs[task] = task.slug or self._generate_task_slug(task)
 
@@ -1164,8 +1166,8 @@ class Flow:
         """
         if prefect.context.get("loading_flow", False):
             warnings.warn(
-                "Attempting to call `flow.run` during execution of flow file will lead to "
-                "unexpected results.",
+                "Attempting to call `flow.run` during execution of flow file will lead"
+                " to unexpected results.",
                 stacklevel=2,
             )
             return None
@@ -1384,10 +1386,11 @@ class Flow:
                         graph.render(tmp.name, view=True)
                     except graphviz.backend.ExecutableNotFound:
                         msg = (
-                            "It appears you do not have Graphviz installed, or it is not on your "
-                            "PATH. Please install Graphviz from http://www.graphviz.org/download/. "
-                            "And note: just installing the `graphviz` python package is not "
-                            "sufficient!"
+                            "It appears you do not have Graphviz installed, or it is"
+                            " not on your PATH. Please install Graphviz from"
+                            " http://www.graphviz.org/download/. And note: just"
+                            " installing the `graphviz` python package is not"
+                            " sufficient!"
                         )
                         raise graphviz.backend.ExecutableNotFound(msg)
                     finally:
@@ -1564,8 +1567,8 @@ class Flow:
         """
         if prefect.context.get("loading_flow", False):
             warnings.warn(
-                "Attempting to call `flow.register` during execution of flow file will lead "
-                "to unexpected results.",
+                "Attempting to call `flow.register` during execution of flow file will"
+                " lead to unexpected results.",
                 stacklevel=2,
             )
             return None
